@@ -5,6 +5,10 @@ defmodule LineNotifyClient do
     post_message(token, %{message: message})
   end
 
+  def post(token, message, %{imageFullsize: image_fullsize, imageThumbnail: image_thumbnail}) do
+    post_message(token, %{message: message, imageFullsize: image_fullsize, imageThumbnail: image_thumbnail})
+  end
+
   defp post_message(token, params) do
     header = %{
       "Content-Type":  "application/x-www-form-urlencoded",
