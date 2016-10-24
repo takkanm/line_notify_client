@@ -14,8 +14,8 @@ defmodule LineNotifyClient do
     case HTTPoison.post(@url, URI.encode_query(params), header) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         {:ok, body}
-      {:ok, %HTTPoison.Response{status_code: 400}} ->
-        :raise_400
+      {:ok, %HTTPoison.Response{status_code: 400, body: body}} ->
+        {:raise_400, body}
       {:error, %HTTPoison.Error{reason: reason}} ->
         {:error, reason}
     end
