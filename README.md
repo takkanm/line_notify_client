@@ -1,6 +1,6 @@
 # LineNotifyClient
 
-**TODO: Add description**
+Client for [LINE Notify](https://notify-bot.line.me/).
 
 ## Installation
 
