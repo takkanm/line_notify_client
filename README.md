@@ -4,7 +4,7 @@ Client for [LINE Notify](https://notify-bot.line.me/).
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+If [available in Hex](https://hex.pm/packages/line_notify_client), the package can be installed as:
 
   1. Add `line_notify_client` to your list of dependencies in `mix.exs`:
 
