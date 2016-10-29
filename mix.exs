@@ -20,7 +20,8 @@ defmodule LineNotifyClient.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.9.0"},
-	  {:ex_doc, ">= 0.0.0", only: :dev}
+	  {:ex_doc, ">= 0.0.0", only: :dev},
+	  {:poison, "~> 3.0"}
 	]
   end
 
