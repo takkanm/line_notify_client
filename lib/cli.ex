@@ -2,6 +2,8 @@ defmodule CLI do
   def main(args) do
     option_strict = [image_thumbnail: :string, image_fullsize: :string]
     case OptionParser.parse(args, strict: option_strict) do
+      {[], [token], _} ->
+        LineNotifyClient.post_stdin(token)
       {[], [token|messages], _} ->
         LineNotifyClient.post(token, Enum.join(messages, " "))
       {[image_thumbnail: image_thumbnail, image_fullsize: image_fullsize], [token|messages], _} ->

@@ -1,6 +1,22 @@
 defmodule LineNotifyClient do
   @url "https://notify-api.line.me/api/notify"
 
+  def post_stdin(token) do
+    post(token, Enum.join(read_stdin, ""))
+  end
+
+  defp read_stdin do
+    read_stdin([])
+  end
+
+  defp read_stdin(lines) do
+    case IO.read(:stdio, :line) do
+      :eof             -> lines
+      {:error, reason} -> IO.puts "Error: #{reason}"
+      data             -> read_stdin(lines ++ [data])
+    end
+  end
+
   def post(token, message) do
     post_message(token, %{message: message})
   end
