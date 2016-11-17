@@ -6,11 +6,21 @@ defmodule CLI do
         LineNotifyClient.post_stdin(token)
       {[], [token|messages], _} ->
         LineNotifyClient.post(token, Enum.join(messages, " "))
-      {[image_thumbnail: image_thumbnail, image_fullsize: image_fullsize], [token|messages], _} ->
-        LineNotifyClient.post(token, Enum.join(messages, " "), %{imageFullsize: image_fullsize, imageThumbnail: image_thumbnail})
+      {options, [token|messages], _} ->
+        options_map = convert_options_key(options) |> Map.new
+        LineNotifyClient.post(token, Enum.join(messages, " "), options_map)
       _ ->
         usage
     end
+  end
+
+  defp convert_options_key(options) do
+    Enum.map(options, fn({key, value}) -> {camelize_key(key), value} end)
+  end
+
+  defp camelize_key(key) do
+    [first|rest] = String.split(to_string(key), "_")
+    rest |> Enum.map(fn(word) -> Macro.camelize(word) end) |> (&List.flatten(first, &1)).() |> List.to_string
   end
 
   def usage do

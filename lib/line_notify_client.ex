@@ -21,8 +21,8 @@ defmodule LineNotifyClient do
     post_message(token, %{message: message})
   end
 
-  def post(token, message, %{imageFullsize: image_fullsize, imageThumbnail: image_thumbnail}) do
-    post_message(token, %{message: message, imageFullsize: image_fullsize, imageThumbnail: image_thumbnail})
+  def post(token, message, options) do
+    post_message(token, Map.merge(%{message: message}, options))
   end
 
   defp post_message(token, params) do
