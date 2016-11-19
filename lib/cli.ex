@@ -6,12 +6,12 @@ defmodule CLI do
       sticker_id: :integer,
       sticker_package_id: :integer,
     ]
-    case OptionParser.parse(args, strict: option_strict) do
+    case OptionParser.parse(args, switches: option_strict) do
       {[], [token], _} ->
         LineNotifyClient.post_stdin(token)
-      {[], [token|messages], _} ->
+      {[], [token|messages], []} ->
         LineNotifyClient.post(token, Enum.join(messages, " "))
-      {options, [token|messages], _} ->
+      {[], [token|messages], options} ->
         options_map = convert_options_key(options) |> Map.new
         LineNotifyClient.post(token, Enum.join(messages, " "), options_map)
       _ ->
@@ -24,8 +24,8 @@ defmodule CLI do
   end
 
   defp camelize_key(key) do
-    [first|rest] = String.split(to_string(key), "_")
-    rest |> Enum.map(fn(word) -> Macro.camelize(word) end) |> (&List.flatten(first, &1)).() |> List.to_string
+    [first|rest] = to_string(key) |> String.trim_leading("--") |> String.split("_")
+    rest |> Enum.map(fn(word) -> Macro.camelize(word) end) |> (&List.flatten([first], &1)).() |> List.to_string
   end
 
   def usage do
