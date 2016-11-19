@@ -33,5 +33,5 @@ $ mix escript.install github github takkanm/line_notify_client
 ## Command Line Usage
 
 ```shell
-$ line_notify_client [--image_thubnail url --image_fullsize url] token msg1 [msg2...]
+$ line_notify_client [--sticker_id number --sticker_package_id number][--image_thubnail url --image_fullsize url] token msg1 [msg2...]
 ```
