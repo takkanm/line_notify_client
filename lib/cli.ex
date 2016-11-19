@@ -1,12 +1,12 @@
 defmodule CLI do
   def main(args) do
-    option_strict = [
+    option_switches = [
       image_thumbnail: :string,
       image_fullsize: :string,
       sticker_id: :integer,
       sticker_package_id: :integer,
     ]
-    case OptionParser.parse(args, switches: option_strict) do
+    case OptionParser.parse(args, switches: option_switches) do
       {[], [token], _} ->
         LineNotifyClient.post_stdin(token)
       {[], [token|messages], []} ->
