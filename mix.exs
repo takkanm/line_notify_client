@@ -8,8 +8,8 @@ defmodule LineNotifyClient.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      escript: [ main_module: CLI ],
-	 description: description(),
-	 package: package(),
+     description: description(),
+     package: package(),
      deps: deps()]
   end
 
@@ -20,9 +20,9 @@ defmodule LineNotifyClient.Mixfile do
   defp deps do
     [
       {:httpoison, "~> 0.9.0"},
-	  {:ex_doc, ">= 0.0.0", only: :dev},
-	  {:poison, "~> 3.0"}
-	]
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:poison, "~> 3.0"}
+    ]
   end
 
   defp description do
@@ -36,7 +36,7 @@ defmodule LineNotifyClient.Mixfile do
      name: :line_notify_client,
      files: ["lib", "mix.exs", "README*"],
      maintainers: ["takkanm"],
-	 licenses: ["MIT"],
+     licenses: ["MIT"],
      links: %{"GitHub" => "https://github.com/takkanm/line_notify_client"}]
   end
 end
