@@ -27,7 +27,11 @@ If [available in Hex](https://hex.pm/packages/line_notify_client), the package c
 ### for Command Line
 
 ```shell
-$ mix escript.install github github takkanm/line_notify_client
+$ git clone https://github.com/takkanm/line_notify_client.git
+$ cd line_notify_client
+$ mix deps.get
+$ mix escript.build
+$ mix escript.install
 ```
 
 ## Command Line Usage
